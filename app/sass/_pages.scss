@@ -1,0 +1,63 @@
+/*---------- pages ----------*/
+.pages {
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+
+  &__item {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+
+    &.hidden {
+      transform: translate( 100%, 100% );
+    }
+
+    &.from-bottom {
+      animation-name: from-bottom;
+    }
+
+    &.from-top {
+      animation-name: from-top;
+    }
+    &.to-bottom {
+      animation-name: to-bottom;
+    }
+    &.to-top {
+      animation-name: to-top;
+    }
+
+  }
+}
+@media (min-width: $phone-landscape) {
+  .pages {
+
+  }
+}
+@media (min-width: $tablet-portrait) {
+  .pages {
+
+  }
+}
+@media (min-width: $tablet-landscape) {
+  .pages {
+
+  }
+}
+@media (min-width: $desktop) {
+  .pages {
+
+  }
+}
+/*---------- /pages ---------*/

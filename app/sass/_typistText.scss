@@ -1,0 +1,11 @@
+/*---------- typistText ----------*/
+.typistText {
+  position: relative;
+
+  &:after {
+    animation: blink 1s step-start 0s infinite;
+    font-weight: 400;
+    content: '|';
+  }
+}
+/*---------- /typistText ---------*/

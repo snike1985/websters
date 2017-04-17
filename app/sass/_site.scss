@@ -1,6 +1,15 @@
 .site {
-  @include justify;
+  font-family: sans-serif;
 
+  &__header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+    height: 50px;
+    color: rgba(225, 246, 255, 0.3);
+    background: #1c262b;
+  }
 }
 @media (min-width: $phone-landscape) {
   .site {
@@ -10,6 +19,10 @@
 @media (min-width: $tablet-portrait) {
   .site {
 
+    &__header {
+      height: 100%;
+      width: 120px;
+    }
   }
 }
 @media (min-width: $tablet-landscape) {

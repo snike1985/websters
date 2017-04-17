@@ -1,0 +1,43 @@
+/*---------- phrases ----------*/
+.phrases {
+  @include absoluteCenter();
+  padding: 1vh;
+  font-size: 5vh;
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+
+  h2 {
+    padding: 5px 0;
+    font-size: .6em;
+    font-weight: 100;
+  }
+
+  h3 {
+    padding: 5px 0;
+    font-size: 1.6em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
+@media (min-width: $phone-landscape) {
+  .phrases {
+
+  }
+}
+@media (min-width: $tablet-portrait) {
+  .phrases {
+
+  }
+}
+@media (min-width: $tablet-landscape) {
+  .phrases {
+
+  }
+}
+@media (min-width: $desktop) {
+  .phrases {
+
+  }
+}
+/*---------- /phrases ---------*/
