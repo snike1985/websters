@@ -20,9 +20,9 @@ window.requestAnimFrame = (function(){
             new Hero( $( this ) );
         } );
 
-        $( '.pages' ).each( function() {
-            new Pages( $( this ) );
-        } );
+        // $( '.pages' ).each( function() {
+        //     new Pages( $( this ) );
+        // } );
 
         $( '.typistText' ).each( function() {
             new TypistText( $( this ) );
@@ -34,233 +34,114 @@ window.requestAnimFrame = (function(){
         //private properties
         var _self = this,
             _obj = obj,
-            _page = 1,
-            _pages = $( '.pages' )[ 0 ],
-            _levels = _obj.find( '.menu__level' ),
+            _pages = $( '.pages__item' ),
             _items = _obj.find( '.menu__item' ),
-            _preItems = _obj.find( '.menu__pre-item' ),
-            _timer = setTimeout( function(){}, 0),
-            _lastSubMenu = _obj.find('.menu__submenu').eq(-1),
-            _siteBtnLink = $('.site__link'),
-            _canHover = true;
+            _activeIndex = 0,
+            _canClickMenuItem = true;
 
         //private methods
         var _addEvents = function () {
 
-                $( 'body' ).on( {
-                    touchmove: function(){
-                        _removeCloneItem();
-                        _items.removeClass( 'visible' );
-                    }
-                } );
-
-                $( '.site__header' ).on( {
-                    scroll: function(){
-                        _removeCloneItem();
-                        _items.removeClass( 'visible' );
-                    }
-                } );
-
                 _items.on( {
                     click: function(){
-                        var curElem = $( this),
-                            subMenu = curElem.parent( '.menu__submenu');
+                        var curElem = $( this);
 
-                        _items.removeClass( 'visible' );
-
-                        if ( subMenu.length) {
-                            if ( subMenu.hasClass( 'open' )) {
-                                subMenu.removeClass( 'open' );
-                            } else {
-                                $( '.menu__submenu').removeClass( 'open' );
-                                _preItems.parents('.menu__submenu-wrap').find( '.menu__submenu').removeClass( 'open' );
-                                subMenu.addClass( 'open' );
-                            }
+                        if ( !curElem.hasClass( 'active' ) && _canClickMenuItem ) {
+                            _items.removeClass( 'active' );
+                            curElem.addClass( 'active' );
+                            _canClickMenuItem = false;
+                            _route( curElem );
                         }
-
-                        _route( curElem );
-
-                        _canHover = false;
-
-                        _removeCloneItem();
-
-                        return false;
-                    },
-                    'mouseout': function(){
-                        _removeCloneItem();
-                        _items.removeClass( 'visible' );
-                        _canHover = true;
-                    },
-                    'mousemove': function(){
-                        var curElem = $(this);
-
-                        if ( ( $( window).width() > 767 ) && ( _canHover ) && ( !$( '.site__header').hasClass( 'open' ) ) ) {
-                            _cloneItem( curElem );
-                        }
-                    }
-                } );
-
-                _preItems.on( {
-                    click: function(){
-                        var curElem = $( this ),
-                            subMenu = curElem.parent( '.menu__submenu');
-
-                        _preItems.removeClass( 'visible' );
-
-                        if ( subMenu.length) {
-                            if ( subMenu.hasClass( 'open' )) {
-                                subMenu.removeClass( 'open' );
-                            } else {
-                                $( '.menu__submenu').removeClass( 'open' );
-                                _preItems.parents('.menu__submenu-wrap').find( '.menu__submenu').removeClass( 'open' );
-                                subMenu.addClass( 'open' );
-                            }
-                        }
-
-                        _route( curElem.next().find( '.menu__item').eq(0) );
-
-                        _canHover = false;
-
-                        _removeCloneItem();
-
-                        return false;
-                    },
-                    'mouseout': function(){
-                        _removeCloneItem();
-                        _preItems.removeClass( 'visible' );
-                        _canHover = true;
-                    },
-                    'mousemove': function(){
-                        var curElem = $(this);
-
-                        if ( ( $( window).width() > 767 ) && ( _canHover ) && ( !$( '.site__header').hasClass( 'open' ) ) ) {
-                            _cloneItem( curElem );
-                        }
-                    }
-                } );
-
-                _siteBtnLink.on( {
-                    click: function(){
-
-                        _route( $( this ) );
 
                         return false;
                     }
                 } );
 
             },
-            _init = function () {
-                _lastSubMenu.addClass('menu__submenu_last');
-                _addEvents();
-                _obj[0].obj = _self;
-            },
-            _closeItem = function(){
-                var curItem = _items.filter( '.active' );
+            _setActiveItem = function () {
+                var startHash = location.hash;
 
-                curItem.removeClass( 'active' );
+                _items.each(function () {
+                    var curElem = $( this ),
+                        curHash = curElem.data( 'page' );
 
-            },
-            _cloneItem = function( item ){
-                var elemTop = item.offset().top,
-                    elemLeft = item.offset().left,
-                    elemWidth = item.find('span').outerWidth(),
-                    elemFontFamily = item.css('font-family'),
-                    elemFontSize = item.css('font-size');
-
-                _removeCloneItem();
-
-                $('body').append('<div class="menu-item-clone">' + item.text() + '</div>');
-
-                $('.menu-item-clone').css({
-                    top: elemTop,
-                    left: elemLeft,
-                    width: elemWidth + 5,
-                    'font-family': elemFontFamily,
-                    'font-size': elemFontSize
+                    if ( startHash == ('#' + curHash) ) {
+                        _activeIndex = curElem.index();
+                    }
                 });
 
+                _pages.addClass( 'hidden' );
+
+                if ( _activeIndex < 0 ) {
+                    _activeIndex = 0;
+                }
+
+                _items.eq(_activeIndex).addClass( 'active' );
+                _pages.eq(_activeIndex).removeClass( 'hidden' );
+
+                // _route( _items.eq(_activeItem) );
             },
-            _openItem = function( item ) {
-
-                item.addClass( 'active' );
-
+            _init = function () {
+                _addEvents();
+                _setActiveItem();
+                _obj[0].obj = _self;
             },
-            _removeCloneItem = function( ) {
-
-                $( '.menu-item-clone' ).remove();
-
-            },
-            _route = function( item ){
-                var path = location.hash,
-                    pageNumber,
-                    page,
-                    subPage,
-                    data = item.data( 'page' ).split( ':' ),
-                    newPage = data[ 0 ],
-                    newSubPage = data[ 1 ],
+            _route = function( clickedItem ){
+                var newHash = clickedItem.data( 'page' ),
+                    newIndex = clickedItem.index(),
                     direction;
 
-                if( path == '' ){
-                    path = 'page__0_1';
-                    location.hash = 'page__0_1';
+                direction = parseInt( newIndex ) > parseInt( _activeIndex  ) ? 'bottom' : 'top';
+
+                var activePage = _pages.eq( _activeIndex ),
+                    newPage = _pages.eq( newIndex );
+
+                switch ( direction ) {
+                    case 'top':
+                        activePage.removeClass( 'hidden' );
+                        newPage.removeClass( 'hidden' );
+
+                        activePage.addClass( 'to-bottom' );
+                        newPage.addClass( 'from-top' );
+
+                        setTimeout( function(){
+                            activePage.removeClass( 'to-bottom' );
+                            newPage.removeClass( 'from-top' );
+                            activePage.addClass( 'hidden' );
+                            _canClickMenuItem = true;
+                        }, 500 );
+                        break;
+                    case 'bottom':
+                        activePage.removeClass( 'hidden' );
+                        newPage.removeClass( 'hidden' );
+
+                        activePage.addClass( 'to-top' );
+                        newPage.addClass( 'from-bottom' );
+
+                        setTimeout( function(){
+                            activePage.removeClass( 'to-top' );
+                            newPage.removeClass( 'from-bottom' );
+                            activePage.addClass( 'hidden' );
+                            _canClickMenuItem = true;
+                        }, 500 );
+                        break;
+                    default:
+                        // activePage = _items.eq(0);
+                        //
+                        // _items.addClass( 'hidden' );
+                        // activePage.removeClass( 'hidden' );
+                        break;
                 }
+                _activeIndex = newIndex;
 
-                pageNumber = path.split( '__' );
-                page = pageNumber[ 1 ].split( '_' )[ 0 ];
-                subPage = pageNumber[ 1 ].split( '_' )[ 1 ];
-
-                direction = parseInt( newPage + '' + newSubPage ) - parseInt( page + '' + subPage );
-
-                location.hash = 'page__' + newPage + '_' + newSubPage;
-
-                if( direction > 0 ) {
-                    _pages.obj.route( 1 );
-                } else if( direction < 0 ) {
-                    _pages.obj.route( -1 );
-                }
-
-            },
-            _setActiveItem = function( item ){
-                var subMenuElem = item.parents( '.menu__submenu' );
-
-                _removeCloneItem();
-                _items.removeClass( 'visible' );
-                _closeItem();
-
-                if ( subMenuElem.length && !subMenuElem.hasClass( 'open' ) ) {
-                    $( '.menu__submenu').removeClass( 'open' );
-                    subMenuElem.addClass( 'open' );
-                }
-
-                item.parents( '.menu__submenu-wrap').find( '.menu__submenu').removeClass( 'open' );
-                item.parents('.menu__submenu').addClass( 'open' );
-
-                _openItem( item );
+                location.hash = newHash;
             };
 
         //public properties
 
         //public vars
-        _self._lastItems = _items.eq(-1).attr('data-page').split(':');
-        _self._menuItems = _items;
 
         //public methods
-        _self.updateMenu = function( page, subPage ) {
-
-            if( _page != page ){
-                _levels.removeClass( 'active' );
-            }
-
-            if( page ){
-                var level = _levels.eq( page - 1 ),
-                    item = level.find( '.menu__item' ).eq( subPage - 1 );
-
-                _page = page;
-
-                _setActiveItem( item );
-
-            }
-        };
 
         _init();
     };

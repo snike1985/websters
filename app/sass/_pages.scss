@@ -3,6 +3,7 @@
   overflow: hidden;
   position: relative;
   height: 100vh;
+  margin-left: 120px;
 
   &__item {
     overflow-y: scroll;
@@ -12,12 +13,8 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: #fff;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-timing-function: ease-in-out;
+    animation-duration: .5s;
     animation-timing-function: ease-in-out;
-    -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
 
     &.hidden {

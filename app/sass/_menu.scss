@@ -1,0 +1,37 @@
+/*---------- menu ----------*/
+.menu {
+  text-align: center;
+  font-size: 10px;
+  border-top: 1px solid rgba(225, 246, 255, 0.07);
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 63px;
+    padding: 5px;
+    color: rgba(225, 246, 255, 0.45);
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(225, 246, 255, 0.07);
+    transition: color .3s ease-in-out;
+
+    &:hover {
+      color: rgba(225, 246, 255, 0.7);
+    }
+
+    &.active { color: #fff }
+  }
+}
+
+@media (min-width: $tablet-portrait) {
+  .menu {
+
+  }
+}
+
+@media (min-width: $tablet-landscape) {
+  .menu {
+
+  }
+}
+/*---------- /menu ---------*/

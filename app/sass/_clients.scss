@@ -1,0 +1,79 @@
+/*---------- clients ----------*/
+.clients {
+  position: relative;
+  padding: 50px 0 10px;
+  background-color: rgba(37, 46, 53, 0.8);
+
+  &__title {
+    position: relative;
+    margin: 0 0 75px;
+    color: #fff;
+    font-size: 36px;
+    font-weight: 100;
+    text-align: center;
+    text-transform: uppercase;
+
+    &:before {
+      @include absoluteCenterX();
+      width: 6px;
+      height: 6px;
+      bottom: -18px;
+      border-radius: 3px;
+      background-color: #d2d8da;
+      box-sizing: border-box;
+      content: '';
+    }
+
+    span {
+
+      &:before {
+        position: absolute;
+        left: calc(50% - 40px);
+        width: 30px;
+        height: 1px;
+        bottom: -15px;
+        background-color: rgba(92, 98, 101, 0.3);
+        content: '';
+      }
+
+      &:after {
+        position: absolute;
+        right: calc(50% - 40px);
+        width: 30px;
+        height: 1px;
+        bottom: -15px;
+        background-color: rgba(92, 98, 101, 0.3);
+        content: '';
+      }
+    }
+  }
+
+  &__wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__item {
+    width: 20%;
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+  }
+}
+
+@media (min-width: $tablet-portrait) {
+  .clients {
+
+  }
+}
+
+@media (min-width: $tablet-landscape) {
+  .clients {
+
+  }
+}
+/*---------- /clients ---------*/
