@@ -1,12 +1,32 @@
-/*---------- features ----------*/
-.features {
+/*---------- title ----------*/
+.title {
   position: relative;
-  padding: 50px 0 10px;
+  padding: 50px;
   z-index: 2;
-  border-top: 1px solid #ddd;
-  background: #fff;
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #656D6D;
+  font-size: 14px;
+  text-align: center;
 
-  &__title {
+  &.title_transparent { background: transparent }
+
+  &.title_light {
+    color: #fff;
+
+    h2 {
+      color: #fff;
+
+      span {
+        &:before,
+        &:after { background: #fff }
+      }
+    }
+  }
+
+  h2 {
     position: relative;
     margin: 0 0 75px;
     z-index: 2;
@@ -53,14 +73,14 @@
 }
 
 @media (min-width: $tablet-portrait) {
-  .features {
+  .title {
 
   }
 }
 
 @media (min-width: $tablet-landscape) {
-  .features {
+  .title {
 
   }
 }
-/*---------- /features ---------*/
+/*---------- /title ---------*/

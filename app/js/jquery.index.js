@@ -12,6 +12,10 @@ window.requestAnimFrame = (function(){
 
     $( function () {
 
+        $( '.contacts' ).each( function() {
+            new Contacts( $( this ) );
+        } );
+
         $( '.menu' ).each( function() {
             new Menu( $( this ) );
         } );
@@ -20,14 +24,163 @@ window.requestAnimFrame = (function(){
             new Hero( $( this ) );
         } );
 
-        // $( '.pages' ).each( function() {
-        //     new Pages( $( this ) );
-        // } );
+        $( '.portfolio' ).each( function() {
+            new Portfolio( $( this ) );
+        } );
 
         $( '.typistText' ).each( function() {
             new TypistText( $( this ) );
         } );
     } );
+
+    var Contacts = function (obj) {
+
+        //private properties
+        var _self = this,
+            _obj = obj,
+            _map = _obj.find( '.contacts__map' ),
+            _googleMap,
+            _mapZoom = parseInt(_map.data( 'zoom' )),
+            _mapCenter = _map.data( 'center' );
+
+        //private methods
+        var _constructor = function () {
+                _onEvents();
+                _initMap();
+                _obj[0].obj = _self;
+            },
+            _addMarker = function () {
+
+                var point = new google.maps.LatLng(_mapCenter[0], _mapCenter[1]);
+
+                var image = new google.maps.MarkerImage(
+                    'img/marker.png',
+                    new google.maps.Size(38,53),
+                    new google.maps.Point(0,0),
+                    new google.maps.Point(19,53)
+                );
+
+                var shadow = new google.maps.MarkerImage(
+                    'img/marker-shadow.png',
+                    new google.maps.Size(69,53),
+                    new google.maps.Point(0,0),
+                    new google.maps.Point(19,53)
+                );
+
+                var shape = {
+                    coord: [18,0,17,1,17,2,16,3,16,4,16,5,24,6,26,7,27,8,34,9,34,10,34,11,33,12,33,13,35,14,37,15,37,16,35,17,33,18,34,19,34,20,34,21,34,22,34,23,34,24,34,25,34,26,33,27,32,28,31,29,29,30,27,31,27,32,25,33,24,34,23,35,23,36,23,37,23,38,23,39,25,40,25,41,26,42,26,43,28,44,29,45,31,46,32,47,33,48,34,49,35,50,37,51,37,52,3,52,3,51,4,50,5,49,5,48,7,47,7,46,8,45,8,44,9,43,9,42,8,41,7,40,6,39,1,38,0,37,0,36,0,35,1,34,2,33,3,32,2,31,2,30,2,29,3,28,3,27,3,26,2,25,2,24,3,23,3,22,4,21,5,20,5,19,7,18,5,17,4,16,3,15,3,14,3,13,3,12,3,11,3,10,4,9,4,8,4,7,5,6,6,5,6,4,7,3,8,2,9,1,11,0,18,0],
+                    type: 'poly'
+                };
+
+                var marker = new google.maps.Marker({
+                    draggable: true,
+                    raiseOnDrag: false,
+                    icon: image,
+                    shadow: shadow,
+                    shape: shape,
+                    map: _googleMap,
+                    position: point
+                });
+            },
+            _initMap = function () {
+                _googleMap = new google.maps.Map( _map[0], {
+                    center: {lat: _mapCenter[0], lng: _mapCenter[1]},
+                    zoom: _mapZoom,
+                    disableDefaultUI: true,
+                    styles: [
+                        {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+                        {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+                        {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+                        {
+                            featureType: 'administrative.locality',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#d59563'}]
+                        },
+                        {
+                            featureType: 'poi',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#d59563'}]
+                        },
+                        {
+                            featureType: 'poi.park',
+                            elementType: 'geometry',
+                            stylers: [{color: '#263c3f'}]
+                        },
+                        {
+                            featureType: 'poi.park',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#6b9a76'}]
+                        },
+                        {
+                            featureType: 'road',
+                            elementType: 'geometry',
+                            stylers: [{color: '#38414e'}]
+                        },
+                        {
+                            featureType: 'road',
+                            elementType: 'geometry.stroke',
+                            stylers: [{color: '#212a37'}]
+                        },
+                        {
+                            featureType: 'road',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#9ca5b3'}]
+                        },
+                        {
+                            featureType: 'road.highway',
+                            elementType: 'geometry',
+                            stylers: [{color: '#746855'}]
+                        },
+                        {
+                            featureType: 'road.highway',
+                            elementType: 'geometry.stroke',
+                            stylers: [{color: '#1f2835'}]
+                        },
+                        {
+                            featureType: 'road.highway',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#f3d19c'}]
+                        },
+                        {
+                            featureType: 'transit',
+                            elementType: 'geometry',
+                            stylers: [{color: '#2f3948'}]
+                        },
+                        {
+                            featureType: 'transit.station',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#d59563'}]
+                        },
+                        {
+                            featureType: 'water',
+                            elementType: 'geometry',
+                            stylers: [{color: '#17263c'}]
+                        },
+                        {
+                            featureType: 'water',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#515c6d'}]
+                        },
+                        {
+                            featureType: 'water',
+                            elementType: 'labels.text.stroke',
+                            stylers: [{color: '#17263c'}]
+                        }
+                    ]
+                });
+
+                _addMarker();
+            },
+            _onEvents = function () {
+
+            };
+
+        //public properties
+
+        //public methods
+
+        _constructor();
+    };
 
     var Menu = function (obj) {
 
@@ -146,154 +299,104 @@ window.requestAnimFrame = (function(){
         _init();
     };
 
-    var Pages = function (obj) {
-
+    var Portfolio = function (obj) {
+    
         //private properties
         var _self = this,
             _obj = obj,
-            _items = _obj.find( '.pages__item' ),
-            _page = 1,
-            _subPage = 0,
-            _duration = 1000,
-            _menu = $( '.menu' )[ 0 ].obj,
-            _active = false;
-
+            _items = _obj.find( '.portfolio__item' ),
+            _oldX = null,
+            _oldY = null,
+            _direction = null;
+    
         //private methods
-        var _addEvents = function () {
-
-                $(window).on( {
-                    'keyup': function(e) {
-                        var keyCode = e.keyCode;
-
-                        console.log(keyCode)
-                        switch (keyCode) {
-                            case 38:
-                                if( !_active ){
-                                    _prevPage();
-                                }
-                                break;
-                            case 40:
-                                if( !_active ){
-                                    _nextPage();
-                                }
-                                break;
-                        }
-                    }
-                } );
-
-            },
-            _init = function () {
-                _addEvents();
-                _route( 0 );
+        var _constructor = function () {
+                _onEvents();
                 _obj[0].obj = _self;
             },
-            _nextPage = function(){
-                var nextPage = _items.filter( '.pages__item_' + _page + '-' + _subPage ).next();
+            _onEvents = function () {
 
-                if ( nextPage.length ) {
-                    var nextPageClass = nextPage.attr( 'class'),
-                        pages = nextPageClass.substr( nextPageClass.indexOf( 'pages__item_' ) + 12, 3).split( '-' );
+                $( window ).on({
+                    'mousemove': function (e) {
+                        var curX = e.pageX,
+                        curY = e.pageY,
+                        deltaX = curX - _oldX,
+                        deltaY = curY - _oldY;
 
-                    _active = true;
-                    location.hash = 'page__'+  pages[ 0 ] +'_' +pages[ 1 ];
-                    _route( 1 );
-                }
+                        if ( Math.abs(deltaX) > Math.abs(deltaY) ) {
+                            if ( deltaX > 0 ) {
+                                _direction = 'right';
+                            }
+                            if ( deltaX < 0 ) {
+                                _direction = 'left';
+                            }
+                        }
 
-            },
-            _prevPage = function(){
-                var prevPage = _items.filter( '.pages__item_' + _page + '-' + _subPage ).prev();
+                        if ( Math.abs(deltaX) < Math.abs(deltaY) ) {
+                            if ( deltaY > 0 ) {
+                                _direction = 'bottom';
+                            }
+                            if ( deltaY < 0 ) {
+                                _direction = 'top';
+                            }
+                        }
 
-                if ( prevPage.length ) {
-                    var prevPageClass = prevPage.attr( 'class'),
-                        pages = prevPageClass.substr( prevPageClass.indexOf( 'pages__item_' ) + 12, 3 ).split( '-' );
+                        _oldX = curX;
+                        _oldY = curY;
+                    },
+                    'mouseenter': function (e) {
 
-                    _active = true;
+                    },
+                    'mouseleave': function (e) {
+                    }
+                });
 
-                    location.hash = 'page__'+  pages[ 0 ] +'_' +pages[ 1 ];
-                    _route( -1 );
-                }
-            },
-            _route = function( direction ){
+                _items.on({
+                    'mouseenter': function () {
+                        var curElem = $(this);
 
-                var path = location.hash.substr( 1 ),
-                    pageNumber;
+                        switch ( _direction ) {
+                            case 'top':
+                                curElem.find( 'a' ).attr( 'class', 'in-bottom' );
+                                break;
+                            case 'right':
+                                curElem.find( 'a' ).attr( 'class', 'in-left' );
+                                break;
+                            case 'bottom':
+                                curElem.find( 'a' ).attr( 'class', 'in-top' );
+                                break;
+                            case 'left':
+                                curElem.find( 'a' ).attr( 'class', 'in-right' );
+                                break;
+                            default:
+                                break;
+                        }
+                    },
+                    'mouseleave': function () {
+                        var curElem = $(this);
 
-                if( path == '' ){
-                    path = 'page__1_1';
-                    location.hash = 'page__1_1';
-                }
-
-                pageNumber = path.split( '__' );
-                _page = pageNumber[ 1 ].split( '_' )[ 0 ];
-                _subPage = pageNumber[ 1 ].split( '_' )[ 1 ];
-
-                var curPage = _items.filter( ':not( .hidden )'),
-                    nextPage = _items.filter( '.pages__item_' + _page + '-' + _subPage );
-
-                if( !direction ){
-
-                    curPage = _items.filter( '.pages__item_' + _page + '-' + _subPage );
-
-                    _items.addClass( 'hidden' );
-                    curPage.removeClass( 'hidden' );
-
-                } else if( direction > 0 ) {
-
-                    _items.addClass( 'hidden' );
-                    curPage.removeClass( 'hidden' );
-                    nextPage.removeClass( 'hidden' );
-
-                    curPage.addClass( 'to-top' );
-                    nextPage.addClass( 'from-bottom' );
-
-                    setTimeout( function(){
-                        curPage.removeClass( 'to-top' );
-                        nextPage.removeClass( 'from-bottom' );
-                        curPage.addClass( 'hidden' );
-                        _active = false;
-
-                    }, _duration + 500 );
-
-                } else if( direction < 0 ) {
-
-                    _items.addClass( 'hidden' );
-                    curPage.removeClass( 'hidden' );
-                    nextPage.removeClass( 'hidden' );
-
-                    curPage.addClass( 'to-bottom' );
-                    nextPage.addClass( 'from-top' );
-
-                    setTimeout( function(){
-                        curPage.removeClass( 'to-bottom' );
-                        nextPage.removeClass( 'from-top' );
-                        curPage.addClass( 'hidden' );
-                        _active = false;
-
-                    }, _duration + 500 );
-
-                }
-
-                _menu.updateMenu( parseInt( _page ), parseInt( _subPage ) );
-
+                        curElem.find( 'a' ).attr( 'class', 'out-' + _direction );
+                    }
+                });
             };
-
+    
         //public properties
-
+    
         //public methods
-        _self.route = function( direction ){
-            _route( direction )
-        };
-
-
-        _init();
+    
+        _constructor();
     };
-
+    
     var Hero = function (obj) {
 
         //private properties
         var _self = this,
             _obj = obj,
-            _video = _obj.find( 'video' );
+            _text = _obj.find( '.phrases' ),
+            _window = $(window),
+            _video = _obj.find( 'video' ),
+            _parentPage = _obj.parents( '.pages__item' ),
+            _winTop = _parentPage.scrollTop();
 
         //private methods
         var _constructor = function () {
@@ -301,9 +404,21 @@ window.requestAnimFrame = (function(){
                 _obj[0].obj = _self;
             },
             _onEvents = function () {
-                $(window).on({
-                    'load': function () {
+                _parentPage.on({
+                    'scroll': function() {
 
+                        var direct = _parentPage.scrollTop() > _winTop ? 'bottom' : 'top',
+                            maxScrollTop = _obj.height() - _parentPage.height();
+
+                        if ( _parentPage.scrollTop() > 0 ) {
+                            _winTop = _parentPage.scrollTop();
+                        } else if ( _parentPage.scrollTop() >= maxScrollTop ) {
+                            _winTop = maxScrollTop;
+                        } else {
+                            _winTop = 0;
+                        }
+
+                        _text.css( { 'opacity': 1 - _parentPage.scrollTop()/_obj.height() } );
                     }
                 });
             };

@@ -2,6 +2,7 @@
 .clients {
   position: relative;
   padding: 50px 0 10px;
+  z-index: 2;
   background-color: rgba(37, 46, 53, 0.8);
 
   &__title {
