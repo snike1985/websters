@@ -1,5 +1,7 @@
 .site {
   overflow: hidden;
+  position: relative;
+  z-index: 2;
   min-height: 100vh;
   min-width: 320px;
   background-color: #fff;
@@ -9,17 +11,24 @@
   background-position: center;
   background-attachment: fixed;
   font-family: sans-serif;
+  transition: transform .3s ease-in-out;
 
   &__header {
     position: fixed;
     top: 0;
-    width: 100%;
-    z-index: 200;
-    height: 50px;
+    left: 0;
+    height: 100%;
+    width: 120px;
+    z-index: 3;
     color: rgba(225, 246, 255, 0.3);
     background: #1c262b;
+    transition: transform .3s ease-in-out;
+    transform: translate(-120px,0);
   }
 }
+
+.menu-open .site__header { transform: translate(0,0) }
+
 @media (min-width: $phone-landscape) {
   .site {
 
@@ -27,10 +36,13 @@
 }
 @media (min-width: $tablet-portrait) {
   .site {
+    padding-left: 120px;
 
     &__header {
+      left: 0;
       height: 100%;
       width: 120px;
+      transform: translate(0,0)
     }
   }
 }

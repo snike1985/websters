@@ -9,6 +9,7 @@
   background-size: cover;
   color: #656D6D;
   font-size: 14px;
+  line-height: 1.4em;
   text-align: center;
 
   &.title_transparent { background: transparent }
@@ -28,9 +29,10 @@
 
   h2 {
     position: relative;
-    margin: 0 0 75px;
+    margin: 0 0 50px;
     z-index: 2;
     font-size: 36px;
+    line-height: normal;
     font-weight: 100;
     text-align: center;
     color: #556677;
@@ -80,7 +82,13 @@
 
 @media (min-width: $tablet-landscape) {
   .title {
+    padding: 50px;
 
+    h2 {
+      margin: 0 0 75px;
+      z-index: 2;
+      font-size: 36px;
+    }
   }
 }
 /*---------- /title ---------*/

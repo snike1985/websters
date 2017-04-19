@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name=“mobile-web-app-capable” content=“yes”>
+    <meta name=“apple-mobile-web-app-status-bar-style” content=“black-translucent” />
     <meta name="format-detection" content="telephone=no">
     <meta name="format-detection" content="address=no">
 
     <title>Websters</title>
 
     <link rel="stylesheet" href="css/index.css">
-
 </head>
 <body>
 
@@ -62,21 +63,31 @@
             <!-- menu -->
             <nav class="menu">
 
-                <!-- menu__item -->
-                <a href="#" data-page="home" class="menu__item">Home</a>
-                <!-- /menu__item -->
+                <!-- menu__btn -->
+                <span class="menu__btn"><span></span></span>
+                <!-- /menu__btn -->
 
-                <!-- menu__item -->
-                <a href="#" data-page="team" class="menu__item">Team</a>
-                <!-- /menu__item -->
+                <!-- menu__wrap -->
+                <div class="menu__wrap">
 
-                <!-- menu__item -->
-                <a href="#" data-page="portfolio" class="menu__item">Portfolio</a>
-                <!-- /menu__item -->
+                    <!-- menu__item -->
+                    <a href="#" data-page="home" class="menu__item">Home</a>
+                    <!-- /menu__item -->
 
-                <!-- menu__item -->
-                <a href="#" data-page="contacts" class="menu__item">Contacts</a>
-                <!-- /menu__item -->
+                    <!-- menu__item -->
+                    <a href="#" data-page="team" class="menu__item">Team</a>
+                    <!-- /menu__item -->
+
+                    <!-- menu__item -->
+                    <a href="#" data-page="portfolio" class="menu__item">Portfolio</a>
+                    <!-- /menu__item -->
+
+                    <!-- menu__item -->
+                    <a href="#" data-page="contacts" class="menu__item">Contacts</a>
+                    <!-- /menu__item -->
+
+                </div>
+                <!-- /menu__wrap -->
 
             </nav>
             <!-- /menu -->
@@ -94,7 +105,7 @@
         <div class="pages">
             
             <!-- pages__item -->
-            <div class="pages__item">
+            <div class="pages__item hidden">
                 
                 <!-- hero -->
                 <div class="hero">
@@ -281,7 +292,7 @@
             <!-- /pages__item -->
 
             <!-- pages__item -->
-            <div class="pages__item">
+            <div class="pages__item hidden">
 
                 <!-- title -->
                 <div class="title">
@@ -622,7 +633,7 @@
             <!-- /pages__item -->
 
             <!-- pages__item -->
-            <div class="pages__item">
+            <div class="pages__item hidden">
 
                 <!-- title -->
                 <div class="title">
@@ -810,7 +821,7 @@
             <!-- /pages__item -->
 
             <!-- pages__item -->
-            <div class="pages__item">
+            <div class="pages__item hidden">
 
                 <!-- contacts -->
                 <div class="contacts">
@@ -824,7 +835,7 @@
                     <!-- /title -->
 
                     <!-- contacts__map -->
-                    <div class="contacts__map" data-zoom="7" data-center="[47.910437, 33.391776]"></div>
+                    <div class="contacts__map" data-zoom="6" data-center="[47.910437, 33.391776]"></div>
                     <!-- /contacts__map -->
 
                     <!-- contacts__wrap -->

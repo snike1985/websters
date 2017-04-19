@@ -11,7 +11,7 @@ window.requestAnimFrame = (function(){
 ( function(){
 
     $( function () {
-
+        
         $( '.contacts' ).each( function() {
             new Contacts( $( this ) );
         } );
@@ -68,7 +68,15 @@ window.requestAnimFrame = (function(){
                 );
 
                 var shape = {
-                    coord: [18,0,17,1,17,2,16,3,16,4,16,5,24,6,26,7,27,8,34,9,34,10,34,11,33,12,33,13,35,14,37,15,37,16,35,17,33,18,34,19,34,20,34,21,34,22,34,23,34,24,34,25,34,26,33,27,32,28,31,29,29,30,27,31,27,32,25,33,24,34,23,35,23,36,23,37,23,38,23,39,25,40,25,41,26,42,26,43,28,44,29,45,31,46,32,47,33,48,34,49,35,50,37,51,37,52,3,52,3,51,4,50,5,49,5,48,7,47,7,46,8,45,8,44,9,43,9,42,8,41,7,40,6,39,1,38,0,37,0,36,0,35,1,34,2,33,3,32,2,31,2,30,2,29,3,28,3,27,3,26,2,25,2,24,3,23,3,22,4,21,5,20,5,19,7,18,5,17,4,16,3,15,3,14,3,13,3,12,3,11,3,10,4,9,4,8,4,7,5,6,6,5,6,4,7,3,8,2,9,1,11,0,18,0],
+                    coord: [18, 0, 17, 1, 17, 2, 16, 3, 16, 4, 16, 5, 24, 6, 26, 7, 27, 8, 34, 9, 34, 10, 34, 11, 33,
+                        12, 33, 13, 35, 14, 37, 15, 37, 16, 35, 17, 33, 18, 34, 19, 34, 20, 34, 21, 34, 22, 34, 23, 34,
+                        24, 34, 25, 34, 26, 33, 27, 32, 28, 31, 29, 29, 30, 27, 31, 27, 32, 25, 33, 24, 34, 23, 35, 23,
+                        36, 23, 37, 23, 38, 23, 39, 25, 40, 25, 41, 26, 42, 26, 43, 28, 44, 29, 45, 31, 46, 32, 47, 33,
+                        48, 34, 49, 35, 50, 37, 51, 37, 52, 3, 52, 3, 51, 4, 50, 5, 49, 5, 48, 7, 47, 7, 46, 8, 45, 8,
+                        44, 9, 43, 9, 42, 8, 41, 7, 40, 6, 39, 1, 38, 0, 37, 0, 36, 0, 35, 1, 34, 2, 33, 3, 32, 2, 31,
+                        2, 30, 2, 29, 3, 28, 3, 27, 3, 26, 2, 25, 2, 24, 3, 23, 3, 22, 4, 21, 5, 20, 5, 19, 7, 18, 5,
+                        17, 4, 16, 3, 15, 3, 14, 3, 13, 3, 12, 3, 11, 3, 10, 4, 9, 4, 8, 4, 7, 5, 6, 6, 5, 6, 4, 7, 3,
+                        8, 2, 9, 1, 11, 0, 18, 0],
                     type: 'poly'
                 };
 
@@ -83,90 +91,44 @@ window.requestAnimFrame = (function(){
                 });
             },
             _initMap = function () {
-                _googleMap = new google.maps.Map( _map[0], {
+                _googleMap = new google.maps.Map(_map[0], {
                     center: {lat: _mapCenter[0], lng: _mapCenter[1]},
                     zoom: _mapZoom,
                     disableDefaultUI: true,
-                    styles: [
-                        {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-                        {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-                        {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-                        {
-                            featureType: 'administrative.locality',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#d59563'}]
-                        },
-                        {
-                            featureType: 'poi',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#d59563'}]
-                        },
-                        {
-                            featureType: 'poi.park',
-                            elementType: 'geometry',
-                            stylers: [{color: '#263c3f'}]
-                        },
-                        {
-                            featureType: 'poi.park',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#6b9a76'}]
-                        },
-                        {
-                            featureType: 'road',
-                            elementType: 'geometry',
-                            stylers: [{color: '#38414e'}]
-                        },
-                        {
-                            featureType: 'road',
-                            elementType: 'geometry.stroke',
-                            stylers: [{color: '#212a37'}]
-                        },
-                        {
-                            featureType: 'road',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#9ca5b3'}]
-                        },
-                        {
-                            featureType: 'road.highway',
-                            elementType: 'geometry',
-                            stylers: [{color: '#746855'}]
-                        },
-                        {
-                            featureType: 'road.highway',
-                            elementType: 'geometry.stroke',
-                            stylers: [{color: '#1f2835'}]
-                        },
-                        {
-                            featureType: 'road.highway',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#f3d19c'}]
-                        },
-                        {
-                            featureType: 'transit',
-                            elementType: 'geometry',
-                            stylers: [{color: '#2f3948'}]
-                        },
-                        {
-                            featureType: 'transit.station',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#d59563'}]
-                        },
-                        {
-                            featureType: 'water',
-                            elementType: 'geometry',
-                            stylers: [{color: '#17263c'}]
-                        },
-                        {
-                            featureType: 'water',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#515c6d'}]
-                        },
-                        {
-                            featureType: 'water',
-                            elementType: 'labels.text.stroke',
-                            stylers: [{color: '#17263c'}]
-                        }
-                    ]
+                    styles: [{
+                        "featureType": "all",
+                        "elementType": "all",
+                        "stylers": [{"hue": "#ff0000"}, {"saturation": -100}, {"lightness": -30}]
+                    }, {
+                        "featureType": "all",
+                        "elementType": "labels.text.fill",
+                        "stylers": [{"color": "#ffffff"}]
+                    }, {
+                        "featureType": "all",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [{"color": "#353535"}]
+                    }, {
+                        "featureType": "landscape",
+                        "elementType": "geometry",
+                        "stylers": [{"color": "#656565"}]
+                    }, {
+                        "featureType": "poi",
+                        "elementType": "geometry.fill",
+                        "stylers": [{"color": "#505050"}]
+                    }, {
+                        "featureType": "poi",
+                        "elementType": "geometry.stroke",
+                        "stylers": [{"color": "#808080"}]
+                    }, {
+                        "featureType": "road",
+                        "elementType": "geometry",
+                        "stylers": [{"color": "#454545"}]
+                    }, {
+                        "featureType": "transit",
+                        "elementType": "labels",
+                        "stylers": [{"hue": "#000000"}, {"saturation": 100}, {"lightness": -40},
+                            {"invert_lightness": true}, {"gamma": 1.5}]
+                    }]
                 });
 
                 _addMarker();
@@ -189,6 +151,8 @@ window.requestAnimFrame = (function(){
             _obj = obj,
             _pages = $( '.pages__item' ),
             _items = _obj.find( '.menu__item' ),
+            _btn = _obj.find( '.menu__btn' ),
+            _site = $( '.site' ),
             _activeIndex = 0,
             _canClickMenuItem = true;
 
@@ -204,11 +168,29 @@ window.requestAnimFrame = (function(){
                             curElem.addClass( 'active' );
                             _canClickMenuItem = false;
                             _route( curElem );
+                            _site.removeClass( 'menu-open' );
                         }
 
                         return false;
                     }
                 } );
+
+                _btn.on( {
+                    click: function(){
+
+                        _site.toggleClass( 'menu-open' );
+                    }
+                } );
+
+                $( window ).on({
+                    'load': function () {
+                        setTimeout(function(){
+                            // This hides the address bar:
+                            console.log(1)
+                            window.scrollTo(0, 1);
+                        }, 0);
+                    }
+                });
 
             },
             _setActiveItem = function () {

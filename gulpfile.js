@@ -41,7 +41,7 @@ var paths = {
     watchScripts: 'app/js/**/*.js',
     images: 'app/img/**/*',
     pictures: 'app/pic/**/*',
-    videos: 'app/videos/**/*',
+    video: 'app/video/**/*',
     php: 'app/php/**/*',
     fonts: 'app/fonts/**/*'
 };
@@ -83,10 +83,10 @@ gulp.task('fonts', function () {
     }).pipe(gulp.dest('dist/fonts'));
 });
 
-gulp.task('videos', function () {
-    return gulp.src(paths.fonts, {
-        base: 'app/videos'
-    }).pipe(gulp.dest('dist/videos'));
+gulp.task('video', function () {
+    return gulp.src(paths.video, {
+        base: 'app/video'
+    }).pipe(gulp.dest('dist/video'));
 });
 
 gulp.task('php', function () {
@@ -134,13 +134,14 @@ gulp.task('watch', function() {
     gulp.watch(paths.images,    ['images',  browserSync.reload]);
     gulp.watch(paths.pictures,    ['pictures',  browserSync.reload]);
     gulp.watch(paths.fonts,    ['fonts']);
+    gulp.watch(paths.video,    ['video']);
     gulp.watch(paths.styles,    ['styles', browserSync.reload]);
     gulp.watch(paths.vendorStyles,    [ 'vendorStyles' ]);
     gulp.watch(paths.views,     ['views',   browserSync.reload]);
 });
 
 function serve() {
-    return run('styles', 'scripts', 'vendorScripts', 'vendorStyles', 'videos', 'php', 'fonts',  'images', 'pictures', 'views', 'serve');
+    return run('styles', 'scripts', 'vendorScripts', 'vendorStyles', 'video', 'php', 'fonts',  'images', 'pictures', 'views', 'serve');
 }
 
 gulp.task('default', ['clean'], serve());

@@ -3,7 +3,7 @@
   overflow: hidden;
   position: relative;
   height: 100vh;
-  margin-left: 120px;
+  transition: transform .3s ease-in-out;
 
   &__item {
     overflow-y: scroll;
@@ -37,6 +37,12 @@
 
   }
 }
+
+.menu-open .pages {
+  pointer-events: none;
+  transform: translate(120px,0);
+}
+
 @media (min-width: $phone-landscape) {
   .pages {
 
@@ -51,6 +57,12 @@
   .pages {
 
   }
+
+  .menu-open .pages {
+    pointer-events: fill;
+    transform: translate(0,0);
+  }
+
 }
 @media (min-width: $desktop) {
   .pages {

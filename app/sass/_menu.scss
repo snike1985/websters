@@ -4,6 +4,48 @@
   font-size: 10px;
   border-top: 1px solid rgba(225, 246, 255, 0.07);
 
+  &__btn {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 16px;
+    left: 136px;
+    width: 28px;
+    height: 18px;
+    z-index: 2;
+    cursor: pointer;
+
+    span {
+      height: 2px;
+      width: 100%;
+      background: #000;
+      font-size: 0;
+      transition: background .3s;
+      backface-visibility: hidden;
+
+      &:before,
+      &:after {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #000;
+        content: '';
+        transition-duration: .3s, .3s;
+        transition-delay: .3s, .001s;
+        backface-visibility: hidden;
+      }
+      &:before {
+        top: 0;
+        transition-property: top, transform, background;
+      }
+      &:after {
+        bottom: 0;
+        transition-property: bottom, transform, background;
+      }
+    }
+  }
+
   &__item {
     display: flex;
     align-items: center;
@@ -22,7 +64,29 @@
     &.active { color: #fff }
   }
 }
+.menu-open {
 
+  .menu__btn {
+
+    span {
+      background: transparent;
+
+      &:before {
+        top: calc(50% - 1px);
+        transform: rotate(45deg);
+      }
+      &:after {
+        bottom: calc(50% - 1px);
+        transform: rotate(-45deg);
+      }
+
+      &:before,
+      &:after {
+        transition-delay: .001s, .3s;
+      }
+    }
+  }
+}
 @media (min-width: $tablet-portrait) {
   .menu {
 
@@ -32,6 +96,7 @@
 @media (min-width: $tablet-landscape) {
   .menu {
 
+    &__btn { display: none }
   }
 }
 /*---------- /menu ---------*/

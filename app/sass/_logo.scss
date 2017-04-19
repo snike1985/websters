@@ -2,7 +2,8 @@
 .logo {
   display: flex;
   justify-content: center;
-  height: 40px;
+  height: 130px;
+  padding: 10px;
 
   svg {
     height: 100%;
@@ -11,8 +12,7 @@
 
 @media (min-width: $tablet-portrait) {
   .logo {
-    height: 130px;
-    padding: 10px;
+
   }
 }
 
