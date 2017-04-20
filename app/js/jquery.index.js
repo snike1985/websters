@@ -182,16 +182,6 @@ window.requestAnimFrame = (function(){
                     }
                 } );
 
-                $( window ).on({
-                    'load': function () {
-                        setTimeout(function(){
-                            // This hides the address bar:
-                            console.log(1)
-                            window.scrollTo(0, 1);
-                        }, 0);
-                    }
-                });
-
             },
             _setActiveItem = function () {
                 var startHash = location.hash;
