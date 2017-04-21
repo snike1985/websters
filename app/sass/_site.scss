@@ -14,6 +14,9 @@
   transition: transform .3s ease-in-out;
 
   &__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: fixed;
     top: 0;
     left: 0;
@@ -24,6 +27,23 @@
     background: #1c262b;
     transition: transform .3s ease-in-out;
     transform: translate(-120px,0);
+
+    &-copyright {
+      display: block;
+      padding: 10px 5px;
+      font-size: 12px;
+      line-height: 1.5em;
+      text-align: center;
+    }
+
+    .social {
+
+      &__item {
+        width: 20px;
+        height: 20px;
+        margin: 10px;
+      }
+    }
   }
 }
 

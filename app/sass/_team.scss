@@ -15,7 +15,7 @@
     display: block;
     position: relative;
     width: 100%;
-    padding-bottom: 35px;
+    margin-bottom: 35px;
     color: #b1b7ba;
     font-size: 15px;
     text-align: center;
@@ -23,7 +23,7 @@
     &:before {
       position: absolute;
       top: 250px;
-      bottom: 0;
+      bottom: -35px;
       left: calc(-50vw + 50%);
       width: 100vw;
       z-index: 1;
@@ -147,9 +147,12 @@
 
     &__item {
       width: 30%;
-      padding-bottom: 157px;
+      margin-bottom: 157px;
 
-      &:before { top: 407px }
+      &:before {
+        top: 407px;
+        bottom: -157px;
+      }
 
       &-picture {
         height: 407px;

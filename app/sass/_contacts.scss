@@ -1,5 +1,8 @@
 /*---------- contacts ----------*/
 .contacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
   min-height: 100vh;
   background: #1c262b;
@@ -15,9 +18,42 @@
     pointer-events: none;
   }
 
-  &__wrap {
+  &__row {
     position: relative;
+    width: 100%;
     z-index: 2;
+  }
+
+  &__info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-transform: uppercase;
+
+    li {
+      display: flex;
+      align-items: center;
+      width: 300px;
+      padding: 10px;
+
+      i {
+        display: block;
+        width: 50px;
+        margin-right: 10px;
+
+        svg {
+          width: 100%;
+          fill: #fff;
+        }
+      }
+
+      a,
+      a:visited {
+        color: #fff;
+      }
+    }
   }
 }
 
