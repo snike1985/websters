@@ -170,7 +170,7 @@ window.requestAnimFrame = (function () {
 
             },
             _addCount = function ( percent ) {
-                var value = Math.floor( ( _maxCount - _count )*percent );
+                var value = Math.floor( ( _maxCount - _count )*percent + _count );
 
                 _obj.text( _valueFormating( value ) );
 
