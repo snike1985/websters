@@ -29,19 +29,23 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    padding: 70px 10px 0;
     color: #fff;
+    font-size: 12px;
     text-transform: uppercase;
 
     li {
       display: flex;
       align-items: center;
-      width: 300px;
+      flex-direction: column;
+      width: 50%;
       padding: 10px;
+      text-align: center;
 
       i {
         display: block;
-        width: 50px;
-        margin-right: 10px;
+        width: 30px;
+        margin: 0 0 10px;
 
         svg {
           width: 100%;
@@ -66,6 +70,29 @@
 @media (min-width: $tablet-landscape) {
   .contacts {
 
+    &__info {
+
+      li { width: 25% }
+    }
+  }
+}
+
+@media (min-width: $desktop) {
+  .contacts {
+
+    &__info {
+      font-size: 16px;
+
+      li {
+        flex-direction: row;
+        text-align: left;
+
+        i {
+          width: 50px;
+          margin: 0 10px 0 0;
+        }
+      }
+    }
   }
 }
 /*---------- /contacts ---------*/

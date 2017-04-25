@@ -17,6 +17,11 @@
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 
+    &-wrap {
+      position: relative;
+      transition: all .5s cubic-bezier(.15,.6,.28,1);
+    }
+
     &.hidden {
       transform: translate( 100%, 100% );
     }

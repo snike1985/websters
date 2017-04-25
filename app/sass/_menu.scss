@@ -106,13 +106,13 @@
 @media (min-width: $tablet-portrait) {
   .menu {
 
+    &__btn { display: none }
   }
 }
 
 @media (min-width: $tablet-landscape) {
   .menu {
 
-    &__btn { display: none }
   }
 }
 /*---------- /menu ---------*/
