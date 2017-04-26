@@ -25,6 +25,10 @@
       left: 0;
       padding: 10%;
       background-color: rgba(0,0,0,.6);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      //background-color: rgba(252,208,136,.6);
       color: #fff;
       opacity: 0;
       transition: none;
@@ -38,6 +42,17 @@
         border: 1px solid rgba(255,255,255,.7);
         content: '';
         pointer-events: none;
+      }
+
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: auto;
+        height: auto;
+        max-width: 70%;
+        max-height: 70%;
+        transform: translate(-50%,-50%);
       }
     }
 
